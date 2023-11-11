@@ -104,7 +104,7 @@ func handleStream(stream quic.Stream) {
 			panic(err)
 		}
 
-		//fmt.Println("Received:", string(data[:n]))
+		//fmt.Println("Received: ", string(data[:n]))
 		httpCh <- string(data[:n])
 	}
 }
