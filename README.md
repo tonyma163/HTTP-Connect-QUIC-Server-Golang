@@ -13,18 +13,28 @@ ClientA <---> [Web1.js] <---JSON---> [Client1 HTTP Server] <br />
 go run server.go
 
 ## 2 Run the Both Client Server
+> Client1
 ```
 cd client
 go run client.go
 ```
+> Client2
+```
 cd client2
 go run client2.go
+```
 
 ## 3 Run the Both Javascript File (Send Json & Read)
+> Client Web1
+```
 cd client
-node web.js <br />
-cd client2 <br />
+node web.js
+```
+> Client Web2
+```
+cd client2
 node web3.js
+```
 
 # PORT
 server.go 1999 <br />
