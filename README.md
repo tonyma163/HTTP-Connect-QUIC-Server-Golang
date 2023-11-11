@@ -37,6 +37,6 @@ node web3.js
 ```
 
 # PORT
-server.go 1999 <br />
-client.go 6969 <br />
-client2.go 7000
+server.go 127.0.0.1:1999 <br />
+client.go 127.0.0.1:6969 <br />
+client2.go 127.0.0.1:7000
