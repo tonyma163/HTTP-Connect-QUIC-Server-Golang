@@ -15,7 +15,7 @@ import (
 )
 
 const (
-	clientAddr = "127.0.0.1:6969"
+	clientAddr = "127.0.0.1:7000"
 	serverAddr = "127.0.0.1:1999"
 )
 
