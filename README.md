@@ -4,7 +4,9 @@ The web side (javascript file) will keep sending/receiving the json from the cli
 While the QUIC server will keep sending the received json from the client side server to other clients (except the sender client) in the same room.
 
 # Simple Data Flow
-ClientA <---> Web1.js <---JSON---> Client1 HTTP Server <---JSON_STRING---> QUIC SERVER <---JSON_STRING---> Client2 HTTP Server <---JSON---> Web2.js <---> ClientB
+ClientA <---> Web1.js <---JSON---> Client1 HTTP Server 
+<---JSON_STRING---> QUIC SERVER <---JSON_STRING---> 
+Client2 HTTP Server <---JSON---> Web2.js <---> ClientB
 
 # Steps
 # 1 Run QUIC Server
