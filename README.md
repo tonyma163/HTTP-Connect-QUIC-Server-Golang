@@ -21,3 +21,8 @@ cd client
 node web.js
 cd client2
 node web3.js
+
+# PORT
+server.go 1999
+client.go 6969
+client2.go 7000

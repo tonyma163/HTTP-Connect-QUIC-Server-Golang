@@ -49,12 +49,8 @@ func handleFunc(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 	w.Write(jsonRes)
-
-	// Respond with a JSON object
-	//w.Header().Set("Content-Type", "application/json")
-	//w.Write([]byte(`{"type": "FRAME","message": "from clientServer"}`))
-	//w.Write([]byte(res))
 }
+
 func main() {
 	// API SETUP
 	go func() {
@@ -75,7 +71,6 @@ func main() {
 		panic(err)
 	}
 	fmt.Println("Connected to server.")
-	//fmt.Print("Enter message: ")
 
 	go func() {
 		for {
@@ -83,27 +78,24 @@ func main() {
 			if err != nil {
 				panic(err)
 			}
-			go handleStream(stream)
+			go handleStream(stream) // Receive
 		}
 	}()
 
-	for { // keep sending the message from the web
-		//reader := bufio.NewReader(os.Stdin)
-		//line, _ := reader.ReadString('\n')
+	for { // Send
 		line := <-quicCh
 		stream, err := conn.OpenStreamSync(context.Background())
 		if err != nil {
 			panic(err)
 		}
 		fmt.Fprintf(stream, line)
-		fmt.Println("SENT: ", line)
+		//fmt.Println("SENT: ", line)
 	}
 }
 
-func handleStream(stream quic.Stream) { // keep sending back to the web
+func handleStream(stream quic.Stream) {
 	r := bufio.NewReader(stream)
 	for {
-		//line, err := r.ReadString('\n')
 		data := make([]byte, 1024)
 		n, err := r.Read(data)
 		if err == io.EOF {
@@ -112,7 +104,7 @@ func handleStream(stream quic.Stream) { // keep sending back to the web
 			panic(err)
 		}
 
-		fmt.Println("Received:", string(data[:n]))
+		//fmt.Println("Received:", string(data[:n]))
 		httpCh <- string(data[:n])
 	}
 }

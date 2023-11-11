@@ -63,7 +63,6 @@ func handleConnection(conn quic.Connection) {
 
 			r := bufio.NewReader(stream)
 			for {
-				//line, err := r.ReadString('\n')
 				data := make([]byte, 1024)
 				n, err := r.Read(data)
 				if err == io.EOF {
@@ -97,10 +96,6 @@ func broadcast(message string, sender quic.Connection) {
 	mu.Lock()
 	defer mu.Unlock()
 
-	//
-	//message = "From: " + sender.RemoteAddr().String() + ": " + message
-
-	//
 	for conn := range connections {
 		if conn != sender { // Skip the sender
 			stream, err := conn.OpenStream()
