@@ -28,7 +28,7 @@ func main() {
 	// QUIC Config
 	quicConf := &quic.Config{
 		EnableDatagrams:    true, // 0-RTT
-		MaxIncomingStreams: 100000000000000000,
+		MaxIncomingStreams: 1000000000000000000,
 	}
 
 	listener, err := quic.ListenAddr(addr, generateTLSConfig(), quicConf)
