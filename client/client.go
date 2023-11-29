@@ -21,8 +21,8 @@ const (
 
 var (
 	mu     sync.Mutex
-	quicCh = make(chan string) // Channel for sending QUIC messages
-	httpCh = make(chan string) // Channel for sending HTTP response
+	quicCh = make(chan string, 1000) // Channel for sending QUIC messages
+	httpCh = make(chan string, 1000) // Channel for sending HTTP response
 )
 
 func handleFunc(w http.ResponseWriter, r *http.Request) {
@@ -62,7 +62,8 @@ func main() {
 	// CONNECT TO QUIC SERVER
 	// QUIC Config
 	quicConf := &quic.Config{
-		EnableDatagrams: true, // 0-RTT
+		EnableDatagrams:    true, // 0-RTT
+		MaxIncomingStreams: 100000000000000000,
 	}
 
 	// Connect to the server
